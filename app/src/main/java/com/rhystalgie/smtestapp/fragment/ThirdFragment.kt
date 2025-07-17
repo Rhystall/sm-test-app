@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import androidx.paging.LoadState
 import androidx.paging.LoadStateAdapter
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -35,8 +36,15 @@ class ThirdFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         adapter = UserAdapter { user ->
-            // handle user click, bisa pakai navController popBackStack dengan result
+            // Kirim nama user ke parentFragmentManager sebagai hasil navigasi
+            parentFragmentManager.setFragmentResult(
+                "selectedUserKey",
+                Bundle().apply { putString("selectedUserName", "${user.first_name} ${user.last_name}") }
+            )
+            // Kembali ke fragment sebelumnya
+            findNavController().popBackStack()
         }
+
 
         binding.rvUsers.layoutManager = LinearLayoutManager(requireContext())
         binding.rvUsers.adapter = adapter
@@ -50,6 +58,11 @@ class ThirdFragment : Fragment() {
         binding.swipeRefresh.setOnRefreshListener {
             adapter.refresh()
         }
+
+        binding.topAppBar.setNavigationOnClickListener {
+            findNavController().popBackStack()
+        }
+
 
         adapter.addLoadStateListener { loadState ->
             binding.swipeRefresh.isRefreshing = loadState.source.refresh is LoadState.Loading

@@ -36,6 +36,23 @@ class SecondFragment : Fragment() {
             val action = SecondFragmentDirections.actionSecondFragmentToThirdFragment()
             findNavController().navigate(action)
         }
+
+
+        // Setup toolbar back navigation
+        binding.topAppBar.setNavigationOnClickListener {
+            findNavController().popBackStack()
+        }
+
+        // Terima result dari ThirdFragment
+        parentFragmentManager.setFragmentResultListener("selectedUserKey", viewLifecycleOwner) { _, bundle ->
+            val selectedUserName = bundle.getString("selectedUserName")
+            binding.tvSelectedUser.text = selectedUserName ?: "Selected User Name"
+        }
+
+        // Tombol Choose User navigasi ke ThirdFragment
+        binding.btnChooseUser.setOnClickListener {
+            findNavController().navigate(R.id.action_secondFragment_to_thirdFragment)
+        }
     }
 
     override fun onDestroyView() {
