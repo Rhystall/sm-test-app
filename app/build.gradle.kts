@@ -66,4 +66,12 @@ dependencies {
 
     // SwipeRefresh
     implementation("androidx.swiperefreshlayout:swiperefreshlayout:1.1.0")
+
+    // CircleImageView
+    implementation("de.hdodenhof:circleimageview:3.1.0")
+
+    // Paging 3 Runtime
+    implementation("androidx.paging:paging-runtime-ktx:3.2.1")
+
+    implementation("com.github.bumptech.glide:glide:4.16.0")
 }
