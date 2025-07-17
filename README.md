@@ -1,5 +1,3 @@
----
-
 # SM Test App
 
 Android native app menggunakan Kotlin dengan XML Views yang terdiri dari 3 layar:
@@ -54,5 +52,3 @@ Android native app menggunakan Kotlin dengan XML Views yang terdiri dari 3 layar
 * Pastikan koneksi internet aktif untuk load data API
 * Font Poppins sudah di-set global di tema aplikasi
 * UI mengikuti desain dari prototipe Figma
-
----
